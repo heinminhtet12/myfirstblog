@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrossNet IT and Network</title>
+    <link rel="icon" href="crossnet.jpeg" type="image/jpeg">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #002f6c, #004080);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 3rem;
+            font-weight: 700;
+            animation: rotateIn 2s ease-in-out;
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 90vh;
+            text-align: center;
+        }
+
+        .main-content h2 {
+            font-size: 3rem;
+            margin: 0;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .main-content p {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            animation: fadeInUp 2s ease-out;
+            animation-delay: 0.5s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            color: #fff;
+            background-color: #003366;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 2rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .cta-button:hover {
+            background-color: #001f3f;
+            transform: scale(1.1);
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-200deg);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CrossNetMM</h1>
+    </header>
+    <div class="main-content">
+        <h2>Welcome To CrossNet</h2>
+        <a href="/blog" class="cta-button">Meet Our Teams</a>
+
+    </div>
+    <footer>
+        <p>&copy; 2024 CrossNetMM</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossnet IT and Network</title>
+    <link rel="icon" href="crossnet.jpeg" type="image/jpeg">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e3f2fd; /* Light blue background */
+            animation: fadeIn 1s ease;
+        }
+        header {
+            background: #003366; /* Dark blue background for the title bar */
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            z-index: 1000;
+            animation: slideInTop 0.5s ease;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 1px;
+            animation: slideInDown 0.5s ease;
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.2em;
+            background: transparent;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end; /* Align menu to the right */
+            margin-top: 10px;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            background-color: transparent;
+        }
+
+        nav ul li a:hover {
+            background-color: #66b3ff; /* Light blue on hover */
+            color: #003366; /* Dark blue text on hover */
+            transform: scale(1.1);
+        }
+
+        .hero {
+            background: #00509e; /* Darker blue for the hero section */
+            color: #ffffff;
+            padding: 60px 0;
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+        .hero h2 {
+            margin: 0;
+            font-size: 2.5em;
+            animation: bounceIn 0.5s ease;
+        }
+        .hero p {
+            font-size: 1.2em;
+            animation: fadeIn 0.5s ease 0.5s;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .team {
+            background: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+            animation: fadeInUp 1s ease 0.5s;
+        }
+        .team h2 {
+            color: #003366; /* Dark blue for team section */
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .team-members {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .team-member {
+            flex: 1 1 280px;
+            background: #ffffff;
+            border: 2px solid #003366;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeIn 1s ease;
+        }
+        .team-member:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+            animation: pulse 0.5s infinite alternate;
+        }
+        .team-member img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+            animation: bounceIn 1s ease;
+        }
+        .team-member h3 {
+            color: #003366;
+            margin: 10px 0;
+        }
+        .team-member p {
+            font-size: 1em;
+            color: #555;
+        }
+        footer {
+            background: #003366; /* Dark blue for the footer */
+            color: #ffffff;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+            width: 100%;
+            box-shadow: 0 -4px 8px rgba(0,0,0,0.1);
+            animation: slideInUp 1s ease;
+        }
+        footer p {
+            margin: 5px 0;
+        }
+        .contact-info {
+            text-align: center;
+            padding: 20px;
+            background: #ffffff;
+            margin-top: 20px;
+            animation: fadeInUp 1s ease 1s;
+        }
+        .contact-info h2 {
+            color: #003366;
+        }
+        .contact-info p {
+            font-size: 1.1em;
+            color: #333;
+            margin: 5px 0;
+        }
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 25px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #007bff; /* Button blue */
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeIn 1s ease 1.5s;
+        }
+        .button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        .button:active {
+            background-color: #004494;
+            transform: translateY(0);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInModal 0.5s forwards;
+        }
+        .modal-content {
+            margin: 15% auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            transform: scale(0.8);
+            animation: scaleIn 0.5s forwards;
+        }
+        .modal-content img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .modal-content .info {
+            margin-top: 20px;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5em;
+            color: #333;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #00509e; /* Teal */
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.8); }
+            to { transform: scale(1); }
+        }
+        @keyframes slideInDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideInTop {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounceIn {
+            from { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .menu-toggle {
+                display: inline-block;
+            }
+            nav ul {
+                flex-direction: column;
+                display: none;
+            }
+            nav.active ul {
+                display: flex;
+            }
+            .hero h2 {
+                font-size: 2em;
+            }
+            .hero p {
+                font-size: 1em;
+            }
+            .team h2 {
+                font-size: 1.8em;
+            }
+            .team-member {
+                flex: 1 1 100%;
+                padding: 15px;
+            }
+            .contact-info p {
+                font-size: 1em;
+            }
+            .button {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5em;
+            }
+            .hero h2 {
+                font-size: 1.5em;
+            }
+            .hero p {
+                font-size: 0.9em;
+            }
+            .team h2 {
+                font-size: 1.5em;
+            }
+            .team-member img {
+                width: 80px;
+                height: 80px;
+            }
+            .team-member h3 {
+                font-size: 1.2em;
+            }
+            .team-member p {
+                font-size: 0.9em;
+            }
+            .contact-info p {
+                font-size: 0.9em;
+            }
+            .button {
+                padding: 10px 18px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Crossnet IT and Network</h1>
+        
+    </header>
+    <section class="hero">
+        <div class="container">
+            <h2>Welcome to Our Team</h2>
+            <p>Meet the dedicated professionals behind Crossnet IT and Network.</p>
+        </div>
+    </section>
+    <div class="container">
+        <section class="team">
+            <h2>Our Team</h2>
+            <div class="team-members">
+                <div class="team-member" onclick="document.getElementById('photoModal').style.display='flex'; document.getElementById('modalImg').src='sayarkhant.jpeg'; document.getElementById('modalInfo').innerHTML='Khant Phyo, CrossNet CEO, khantphyo@crossnetmm.com,Phone: +959442329009'.replace(/,/g, '<br>');">
+                    <img src="sayarkhant.jpeg" alt="Khant Phyo">
+                    <h3>Khant Phyo</h3>
+                    <p>Cross Net (CEO)</p>
+                </div>
+                <div class="team-member" onclick="document.getElementById('photoModal').style.display='flex'; document.getElementById('modalImg').src='network engineer hmh.jpeg'; document.getElementById('modalInfo').innerHTML='Hein Min Htet, Network Engineer, heinminhtet@crossnetmm.com, (555) 555-5552'.replace(/,/g, '<br>');">
+                    <img src="network engineer hmh.jpeg" alt="Hein Min Htet">
+                    <h3>Hein Min Htet</h3>
+                    <p>Network Engineer</p>
+                </div>
+                <div class="team-member" onclick="document.getElementById('photoModal').style.display='flex'; document.getElementById('modalImg').src='swam.png'; document.getElementById('modalInfo').innerHTML='Swam Htet Htun, System Engineer,Email: swamhtet@crossnetmm.com, Phone: ????'.replace(/,/g, '<br>');">
+                    <img src="swam.png" alt="Swam Htet Htun">
+                    <h3>Swam Htet Htun</h3>
+                    <p>System Engineer</p>
+                </div>
+                <div class="team-member" onclick="document.getElementById('photoModal').style.display='flex'; document.getElementById('modalImg').src='kolu.jpg'; document.getElementById('modalInfo').innerHTML='Lu Min Htun, Network Engineer, luminthun@crossnetmm.com,Phone: ?'.replace(/,/g, '<br>');">
+                    <img src="kolu.jpg" alt="Lu Min Htun">
+                    <h3>Lu Min Htun</h3>
+                    <p>Network Engineer</p>
+                </div>
+                <div class="team-member" onclick="document.getElementById('photoModal').style.display='flex'; document.getElementById('modalImg').src='networkengineer.jpeg'; document.getElementById('modalInfo').innerHTML='Aung Ye Naing, Network Engineer, aungyen@crossnetmm.com, +959876543210'.replace(/,/g, '<br>');">
+                    <img src="networkengineer.jpeg" alt="Aung Ye Naing">
+                    <h3>Aung Ye Naing</h3>
+                    <p>Network Engineer</p>
+                </div>
+                <div class="team-member" onclick="document.getElementById('photoModal').style.display='flex'; document.getElementById('modalImg').src='kothein.png'; document.getElementById('modalInfo').innerHTML='Thein Min Htet, ???????????, theinmin@crossnetmm.com, +959654321098'.replace(/,/g, '<br>');">
+                    <img src="kothein.png" alt="Thein Min Htet">
+                    <h3>Thein Min Htet</h3>
+                    <p>Technical Support</p>
+                </div>
+
+                <div class="team-member" onclick="document.getElementById('photoModal').style.display='flex'; document.getElementById('modalImg').src='kopyae.png'; document.getElementById('modalInfo').innerHTML='Pyae Phyo Naing, ???????????, Email: pyaephyonaing@crossnetmm.com, Phone: ????'.replace(/,/g, '<br>');">
+                    <img src="kopyae.png" alt="Pyae Phyo Naing">
+                    <h3>Pyae Phyo Naing</h3>
+                    <p>???????????</p>
+                </div> 
+            </div>
+        </section>
+        <section class="contact-info">
+            <h2>Contact Us</h2>
+            <p>Address: Mandalay</p>
+            <p>Phone: +959442329009</p>
+            <p>Phone: +959753131804</p>
+            <p>Email: info@crossnetmm.com</p>
+            <a href="tel:+959442329009" class="button">Phone Call</a>
+            <a href="sms:+959442329009?body=Hello%2C%20I%20would%20like%20to%20contact%20you." class="button">Send SMS</a>
+        </section>
+    </div>
+    
+    <!-- Modal -->
+    <div id="photoModal" class="modal" onclick="this.style.display='none';">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('photoModal').style.display='none';">&times;</span>
+            <img id="modalImg" src="crossnetteam.jpg" alt="Team Member Photo">
+            <div id="modalInfo" class="info"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Crossnet IT and Network. All rights reserved.</p>
+    </footer>
+    
+</body>
+</html>
